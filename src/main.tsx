@@ -2,27 +2,35 @@ import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import * as ReactDOM from "react-dom/client";
 import App from "./App";
-
-// 1. Import the extendTheme function
-import { extendTheme } from "@chakra-ui/react";
-
-// 2. Extend the theme to include custom colors, fonts, etc
-const colors = {
-    brand: {
-        900: "#1a365d",
-        800: "#153e75",
-        700: "#2a69ac",
-    },
-};
-
-const theme = extendTheme({ colors });
+import MyTheme from "./theme";
+import { motion } from "framer-motion";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
     ReactDOM.createRoot(rootElement).render(
         <React.StrictMode>
-            <ChakraProvider theme={theme}>
+            <ChakraProvider theme={MyTheme.getTheme()}>
                 <App />
+                <motion.div
+                    style={{
+                        background:
+                            "linear-gradient(135deg,#121212 25%,#1a1a1a 25%,#1a1a1a 50%,#121212 50%,#121212 75%,#1a1a1a 75%,#1a1a1a)",
+                        backgroundSize: "40px 40px",
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100vw",
+                        height: "100vh",
+                        zIndex: -999,
+                        pointerEvents: "none",
+                    }}
+                    animate={{ backgroundPosition: ["0 0", "40px 40px"] }}
+                    transition={{
+                        ease: "linear",
+                        repeat: Infinity,
+                        duration: 3,
+                    }}
+                />
             </ChakraProvider>
         </React.StrictMode>
     );
