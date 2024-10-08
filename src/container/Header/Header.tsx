@@ -27,7 +27,7 @@ const Header = ({ children }: Props) => {
             boxShadow={10}
             roundedBottom={"15px"}
         >
-            {children}
+            <Box marginRight="30%">{children}</Box>
         </Box>
     );
 };
