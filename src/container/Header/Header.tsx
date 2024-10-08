@@ -10,23 +10,22 @@ const Header = ({ children }: Props) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        boxSize: "full",
         color: "brand.asphalt_100",
         textShadow: "0 0 20px black",
         fontWeight: "bold",
         fontSize: "20px",
+        height: "45px",
 
         backgroundColor: "brand.asphalt_900_alpha",
     };
     return (
         <Box
-            translateX="50px"
             id="header"
             sx={innerBoxStyles}
             backdropFilter="auto"
             backdropBlur="8px"
             boxShadow={10}
-            rounded="full"
+            roundedBottom={"15px"}
         >
             {children}
         </Box>

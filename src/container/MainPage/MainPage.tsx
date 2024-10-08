@@ -14,22 +14,21 @@ function MainPage({ header, nav, main, footer }: Props) {
                   "nav main"
                   "nav footer"`}
             gridTemplateRows={"50px 1fr 30px"}
-            gridTemplateColumns={"150px 1fr"}
-            h="20vh"
-            gap="13"
+            gridTemplateColumns={"50px 1fr"}
+            h="100vh"
+            gap="2"
             color="brand.asphalt_100"
-            fontWeight="bold"
         >
-            <GridItem bg="pink.300" pl="2" zIndex={1} area={"header"}>
+            <GridItem pl="2" zIndex={1} area={"header"} p={0}>
                 {header}
             </GridItem>
-            <GridItem pl="2" bg="pink.300" area={"nav"}>
+            <GridItem pl="2" area={"nav"} p={0}>
                 {nav}
             </GridItem>
-            <GridItem pl="2" bg="green.300" area={"main"}>
+            <GridItem pl="2" area={"main"} p={0}>
                 {main}
             </GridItem>
-            <GridItem pl="2" bg="blue.300" area={"footer"}>
+            <GridItem pl="2" area={"footer"} p={0}>
                 {footer}
             </GridItem>
         </Grid>
