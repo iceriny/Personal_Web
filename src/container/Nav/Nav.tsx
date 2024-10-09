@@ -12,10 +12,26 @@ interface Props {
     items: [React.ReactNode, () => void][];
 }
 function Nav({ items }: Props) {
-    const [isHovered, setIsHovered] = useState<boolean>(false);
-    const [isDisplayedOverlay, setIsDisplayedOverlay] =
-        useState<boolean>(false);
-    const [activatedIndex, setActivatedIndex] = useState<number>(-1);
+    // 状态对象定义
+    const [status, _setStatus] = useState({
+        isHovered: false,
+        isDisplayedOverlay: false,
+        activatedIndex: -1,
+    });
+    // 设置状态
+    const SetStatus = <K extends keyof typeof status>(
+        key: keyof typeof status,
+        value: (typeof status)[K]
+    ) => {
+        _setStatus((prev: typeof status) => ({ ...prev, [key]: value }));
+    };
+    // 状态对象获取
+    const GetStatus = <K extends keyof typeof status>(
+        key: K
+    ): (typeof status)[K] => {
+        return status[key];
+    };
+
     const navVariants: Variants = {
         initial: {
             width: "100%",
@@ -29,11 +45,11 @@ function Nav({ items }: Props) {
     };
     const iconVariants: Variants = {
         initial: { margin: 5 },
-        hover: { margin: 50, scale: 2 },
+        hover: { margin: 10, scale: 2 },
     };
     const itemVariants: Variants = {
-        initial: { margin: 1 },
-        hover: { margin: 20 },
+        initial: { marginBottom: "0vh", marginTop: "0vh" },
+        hover: { marginBottom: "1vh", marginTop: "1vh" },
     };
     // const buttonStyle = {
     //     bg: "none",
@@ -55,7 +71,7 @@ function Nav({ items }: Props) {
             <MotionBox
                 key={key}
                 w="95%"
-                animate={isHovered ? "hover" : "initial"}
+                animate={GetStatus("isHovered") ? "hover" : "initial"}
                 variants={itemVariants}
             >
                 <Center>
@@ -76,8 +92,11 @@ function Nav({ items }: Props) {
                 createItem(
                     items[index][0],
                     `nav_${index}`,
-                    items[index][1],
-                    activatedIndex === index
+                    () => {
+                        items[index][1]();
+                        SetStatus("activatedIndex", index);
+                    },
+                    GetStatus("activatedIndex") === index
                 )
             );
         }
@@ -85,18 +104,18 @@ function Nav({ items }: Props) {
     };
     return (
         <>
-            <Overlay displayed={isDisplayedOverlay} />
+            <Overlay maxBlur={7} displayed={GetStatus("isDisplayedOverlay")} />
             <Box
                 pos="relative"
                 h={"100%"}
                 roundedRight="2xl"
                 onMouseEnter={() => {
-                    setIsHovered(true);
-                    setIsDisplayedOverlay(true);
+                    SetStatus("isHovered", true);
+                    SetStatus("isDisplayedOverlay", true);
                 }}
                 onMouseLeave={() => {
-                    setIsHovered(false);
-                    setIsDisplayedOverlay(false);
+                    SetStatus("isHovered", false);
+                    SetStatus("isDisplayedOverlay", false);
                 }}
             >
                 <MotionBox
@@ -107,11 +126,13 @@ function Nav({ items }: Props) {
                     h="99%"
                     rounded="30"
                     variants={navVariants}
-                    animate={isHovered ? "hover" : "initial"}
+                    animate={GetStatus("isHovered") ? "hover" : "initial"}
                 >
                     <Center>
                         <MotionBox
-                            animate={isHovered ? "hover" : "initial"}
+                            animate={
+                                GetStatus("isHovered") ? "hover" : "initial"
+                            }
                             variants={iconVariants}
                         >
                             <ChevronDownIcon />

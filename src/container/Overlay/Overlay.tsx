@@ -3,8 +3,9 @@ import { AnimatePresence } from "framer-motion";
 
 interface Props {
     displayed?: boolean;
+    maxBlur?: number;
 }
-function Overlay({ displayed = false }: Props) {
+function Overlay({ displayed = false, maxBlur = 5 }: Props) {
     return (
         <AnimatePresence>
             {displayed && (
@@ -19,7 +20,7 @@ function Overlay({ displayed = false }: Props) {
                     // filter="auto"
                     // blur="2px"
 
-                    backdropFilter="blur(5px) brightness(90%)"
+                    backdropFilter={`blur(${maxBlur}px) brightness(90%)`}
                     pointerEvents="none"
                     animate={{
                         opacity: [0, 1],

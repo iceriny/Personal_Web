@@ -19,15 +19,16 @@ function MainPage({ header, nav, main, footer }: Props) {
             gap="2"
             color="brand.asphalt_100"
             p={10}
+            overflow="hidden"
         >
             <GridItem pl="2" zIndex={1} area={"header"} p={0}>
                 {header}
             </GridItem>
-            <GridItem pl="2" area={"nav"} p={0}>
-                {nav}
-            </GridItem>
             <GridItem pl="2" area={"main"} p={0}>
                 {main}
+            </GridItem>
+            <GridItem pl="2" area={"nav"} p={0}>
+                {nav}
             </GridItem>
             <GridItem pl="2" area={"footer"} p={0}>
                 {footer}

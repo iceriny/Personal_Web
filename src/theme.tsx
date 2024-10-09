@@ -111,10 +111,7 @@ class MyTheme {
     };
     static styles = {
         global: {
-            body: {
-                m: "0",
-                p: "0",
-            },
+            body: { cursor: "none", m: "0", p: "0" },
         },
     };
     static theme = extendTheme({

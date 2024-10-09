@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Variants } from "framer-motion";
+import MyTheme from "../../theme";
 interface Props {
     children: React.ReactNode;
     onClick?: () => void;
@@ -9,7 +10,6 @@ interface Props {
     activated?: boolean;
 }
 interface StatusState {
-    isActive: boolean;
     isHovered: boolean;
     isFocused: boolean;
     isDisabled: boolean;
@@ -24,7 +24,6 @@ function NavButton({
     activated = false,
 }: Props) {
     const [status, _setStatus] = useState({
-        isActive: activated ?? false,
         isHovered: false,
         isFocused: false,
         isDisabled: false,
@@ -39,39 +38,33 @@ function NavButton({
     };
     // 获取状态
     const getMotionForState = () => {
-        const [isActive, isHovered] = Object.values(status);
-        if (isHovered) {
-            return "hover";
-        } else if (isActive) {
+        if (activated) {
             return "active";
         }
-    };
-    const buttonStyle = {
-        position: "relative",
-        display: "inline-flex",
-        verticalAlign: "middle",
-        borderRadius: "5px",
-
-        width: w,
-        minWidth: "2.5rem",
-        height: h,
-        fontSize: "1rem",
-        lineHeight: "1.2",
-        textAlign: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "none",
-        outline: "2px solid transparent",
-        cursor: "pointer",
+        const [isHovered] = Object.values(status);
+        if (isHovered) {
+            return "hover";
+        }
     };
 
     const buttonVariants: Variants = {
-        initial: {},
-        hover: { backgroundColor: "#34495e" },
-        active: { backgroundColor: "#1a5b9b" },
+        initial: {
+            fontSize: "0.9rem",
+            textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50}`,
+        },
+        hover: {
+            fontSize: "1.7rem",
+            textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 15px  DodgerBlue`,
+        },
+        active: {
+            fontSize: "2rem",
+            textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50},  0px 0px 15px  Cyan`,
+            marginBottom: "3vh",
+            marginTop: "3vh",
+        },
     };
     const HandleButtonClicked = () => {
-        toggleStatus("isActive");
+        // toggleStatus("isActive");
         onClick();
     };
     const HandleMouseEnter = () => {
@@ -87,7 +80,7 @@ function NavButton({
                 position: "relative",
                 display: "inline-flex",
                 verticalAlign: "middle",
-                borderRadius: "5px",
+                borderRadius: "1rem",
 
                 width: w,
                 minWidth: "2.5rem",
@@ -99,7 +92,8 @@ function NavButton({
                 justifyContent: "center",
                 border: "none",
                 outline: "2px solid transparent",
-                cursor: "pointer",
+                // cursor: "pointer",
+                wordBreak: "keep-all",
             }}
             onClick={HandleButtonClicked}
             onMouseEnter={HandleMouseEnter}
