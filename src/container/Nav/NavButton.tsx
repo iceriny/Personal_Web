@@ -29,9 +29,9 @@ function NavButton({
         isDisabled: false,
     });
     // 切换状态
-    const toggleStatus = (key: keyof StatusState) => {
-        _setStatus((prev: StatusState) => ({ ...prev, [key]: !prev[key] }));
-    };
+    // const toggleStatus = (key: keyof StatusState) => {
+    //     _setStatus((prev: StatusState) => ({ ...prev, [key]: !prev[key] }));
+    // };
     // 设置状态
     const setStatus = (key: keyof StatusState, value: boolean) => {
         _setStatus((prev: StatusState) => ({ ...prev, [key]: value }));

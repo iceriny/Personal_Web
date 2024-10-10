@@ -26,3 +26,5 @@ dist-ssr
 
 # Python Tool
 .venv
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
