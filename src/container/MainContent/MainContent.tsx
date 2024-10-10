@@ -11,7 +11,7 @@ function MainContent({ children }: Props) {
             paddingLeft="2%"
             paddingBottom="1%"
             paddingRight="1%"
-            backgroundColor="brand.asphalt_800_alpha_95"
+            backgroundColor="brand.asphalt_800_alpha_90"
             backdropFilter="auto"
             backdropBlur="10px"
             borderRadius="1.5vw"

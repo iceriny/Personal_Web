@@ -50,17 +50,19 @@ function NavButton({
     const buttonVariants: Variants = {
         initial: {
             fontSize: "0.9rem",
-            textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50}`,
+            textShadow: `0px 0px 6px  ${MyTheme.colors.brand.asphalt_900}`,
         },
         hover: {
             fontSize: "1.7rem",
-            textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 15px  DodgerBlue`,
+            textShadow: `0px 0px 20px  ${MyTheme.colors.brand.asphalt_600}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50}`,
+            color: MyTheme.colors.brand.asphalt_100,
         },
         active: {
             fontSize: "2rem",
-            textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_50}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50},  0px 0px 15px  Cyan`,
+            textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_100}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_100},  0px 0px 15px  Cyan`,
             marginBottom: "3vh",
             marginTop: "3vh",
+            color: MyTheme.colors.brand.asphalt_100,
         },
     };
     const HandleButtonClicked = () => {
@@ -85,6 +87,8 @@ function NavButton({
                 width: w,
                 minWidth: "2.5rem",
                 height: h,
+
+                color: MyTheme.colors.brand.asphalt_600,
                 fontSize: "1rem",
                 lineHeight: "1.2",
                 textAlign: "center",
@@ -100,6 +104,7 @@ function NavButton({
             onMouseLeave={HandleMouseLeave}
             animate={getMotionForState() ?? "initial"}
             variants={buttonVariants}
+            data-can-hover
         >
             {children}
         </motion.div>

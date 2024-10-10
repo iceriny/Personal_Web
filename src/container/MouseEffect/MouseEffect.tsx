@@ -3,18 +3,11 @@ import MyTheme from "../../theme";
 function MouseEffect() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 }); // 定义处理函数，实时获取鼠标位置
     const [mouseSize, setMouseSize] = useState(1);
-    const handleMouseMove = (event: MouseEvent) => {
-        setMousePosition({
-            x: event.clientX,
-            y: event.clientY,
-        });
-    };
-    const handleMouseDown = () => {
-        setMouseSize(3);
-    };
-    const handleMouseUp = () => {
-        setMouseSize(1);
-    };
+    // const mouseSizeRef = useRef(mouseSize); // 更新 ref 每次 mouseSize 变化时
+
+    // useEffect(() => {
+    //     mouseSizeRef.current = mouseSize;
+    // }, [mouseSize]);
 
     useEffect(() => {
         // 监听整个窗口的鼠标移动事件
@@ -29,6 +22,37 @@ function MouseEffect() {
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, []);
+    const handleMouseMove = (event: MouseEvent) => {
+        setMousePosition({
+            x: event.clientX,
+            y: event.clientY,
+        });
+        // const currentMouseSize = mouseSizeRef.current;
+        const elements = document.elementsFromPoint(
+            event.clientX,
+            event.clientY
+        );
+
+        for (const e of elements) {
+            const canHover = e.getAttribute("data-can-hover");
+
+            if (canHover === "true") {
+                setMouseSize(2);
+                return;
+            } else if (canHover === null) {
+                setMouseSize(1);
+                return;
+            }
+        }
+    };
+    const handleMouseDown = () => {
+        console.log("点击了");
+        setMouseSize(3);
+    };
+    const handleMouseUp = () => {
+        console.log("点击抬起");
+        setMouseSize(1);
+    };
 
     const blurValue = mouseSize - 1;
     return (

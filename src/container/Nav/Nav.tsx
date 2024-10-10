@@ -35,12 +35,14 @@ function Nav({ items }: Props) {
     const navVariants: Variants = {
         initial: {
             width: "100%",
-            border: "1px solid " + MyTheme.colors.brand.asphalt_800_alpha_100,
+            border: "0px solid " + MyTheme.colors.brand.asphalt_100_alpha_100,
+            boxShadow: `0px 0px 10px ${MyTheme.colors.brand.asphalt_900_alpha_100}`,
         },
         hover: {
             width: "300px",
-            backgroundColor: MyTheme.colors.brand.asphalt_900_alpha_95,
-            border: "1px solid " + MyTheme.colors.brand.asphalt_600_alpha_50,
+            backgroundColor: MyTheme.colors.brand.asphalt_25_alpha_90,
+            border: "2px solid " + MyTheme.colors.brand.asphalt_100_alpha_50,
+            boxShadow: `0px 0px 100px ${MyTheme.colors.brand.asphalt_900_alpha_70}`,
         },
     };
     const iconVariants: Variants = {
@@ -117,6 +119,7 @@ function Nav({ items }: Props) {
                     SetStatus("isHovered", false);
                     SetStatus("isDisplayedOverlay", false);
                 }}
+                p={["3vh 10vw", "3vh 7vw", "3vh 5.5vw", "4vh 3vw"]}
             >
                 <MotionBox
                     display="flex"

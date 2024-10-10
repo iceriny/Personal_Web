@@ -16,16 +16,16 @@ const Header = ({ children }: Props) => {
         fontSize: "20px",
         height: "45px",
 
-        backgroundColor: "brand.asphalt_900_alpha",
+        // backgroundColor: "brand.asphalt_200_alpha_50",
     };
     return (
         <Box
             id="header"
             sx={innerBoxStyles}
             backdropFilter="auto"
-            backdropBlur="8px"
+            backdropBlur="100px"
             boxShadow={10}
-            roundedBottom={"15px"}
+            rounded={"15px"}
         >
             <Box marginRight="30%">{children}</Box>
         </Box>

@@ -20,15 +20,6 @@ function ParallaxContainer({
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     const [windowSize, setWindowSize] = useState({ w: 0, h: 0 });
-    const handleMouseMove = (e: MouseEvent) => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    // const handleMouseClick = (e: MouseEvent) => {
-    //     console.log("鼠标点击屏幕全局事件");
-    // };
-    const handleWindowResize = () => {
-        setWindowSize({ w: window.innerWidth, h: window.innerHeight });
-    };
     useEffect(() => {
         handleWindowResize();
         window.addEventListener("resize", handleWindowResize);
@@ -40,6 +31,51 @@ function ParallaxContainer({
             // window.removeEventListener("click", handleMouseClick);
         };
     }, []);
+    useEffect(() => {
+        const handleOrientation = (event: DeviceOrientationEvent) => {
+            console.log({
+                alpha: event.alpha,
+                beta: event.beta,
+                gamma: event.gamma,
+            });
+        };
+
+        // 检查浏览器是否支持 DeviceOrientationEvent
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener(
+                "deviceorientation",
+                handleOrientation,
+                true
+            );
+        } else {
+            console.warn(
+                "DeviceOrientationEvent is not supported on this device/browser."
+            );
+        }
+
+        // 清理事件监听器
+        return () => {
+            if (window.DeviceOrientationEvent) {
+                window.removeEventListener(
+                    "deviceorientation",
+                    handleOrientation,
+                    true
+                );
+            }
+        };
+    }, []);
+    const handleMouseMove = (e: MouseEvent) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    // const handleMouseClick = (e: MouseEvent) => {
+    //     console.log("鼠标点击屏幕全局事件");
+    // };
+    const handleWindowResize = () => {
+        setWindowSize({ w: window.innerWidth, h: window.innerHeight });
+    };
+    if (windowSize.w === 0) {
+        return <></>;
+    }
     const calOffset = () => {
         // 屏幕坐标转百分比
         // 屏幕宽度/100 = 位置的百分比显示
@@ -65,10 +101,10 @@ function ParallaxContainer({
 
         const xOffset = (intensity / 20) * widthSubdivision * mouseX;
         const yOffset = (intensity / 20) * heightSubdivision * mouseY;
-        return {
-            x: initialPositionX + xOffset,
-            y: initialPositionY + yOffset,
-        };
+
+        const x = initialPositionX + xOffset;
+        const y = initialPositionY + yOffset;
+        return { x, y };
     };
     const position = calOffset();
     return (

@@ -21,4 +21,12 @@ const MotionBox = forwardRef<HTMLDivElement, MotionChakraProps>(
 
 MotionBox.displayName = "MotionBox";
 
+// import { BoxProps, Box } from "@chakra-ui/react";
+// import { motion, MotionProps } from "framer-motion";
+// type MotionChakraProps = MotionProps & BoxProps;
+// function MotionBox(props: MotionChakraProps) {
+//     props.as = motion.div;
+//     return <Box {...props} />;
+// }
+
 export default MotionBox;
