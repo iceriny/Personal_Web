@@ -9,4 +9,5 @@ export default defineConfig({
             usePolling: true,
         },
     },
+    base: "/Personal_Web/",
 });
