@@ -5,6 +5,7 @@ import App from "./App";
 import MyTheme from "./theme";
 import Background from "./container/Background/Background";
 import MouseEffect from "./container/MouseEffect/MouseEffect";
+import "./styles/BetterScrollbar.css";
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
