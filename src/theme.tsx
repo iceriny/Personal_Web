@@ -8,6 +8,18 @@ class MyTheme {
             asphalt_50: "#ebedef",
             asphalt_100: "#ebedef",
             asphalt_200: "#aeb6bf",
+            asphalt_200_alpha_10: "#aeb6bfa0",
+            asphalt_200_alpha_20: "#aeb6bf5f",
+            asphalt_200_alpha_30: "#aeb6bf3d",
+            asphalt_200_alpha_40: "#aeb6bf2a",
+            asphalt_200_alpha_45: "#aeb6bf1e",
+            asphalt_200_alpha_50: "#aeb6bf80",
+            asphalt_200_alpha_60: "#aeb6bf2c",
+            asphalt_200_alpha_70: "#aeb6bf2f",
+            asphalt_200_alpha_80: "#aeb6bf36",
+            asphalt_200_alpha_90: "#aeb6bf3f",
+            asphalt_200_alpha_95: "#aeb6bf3c",
+            asphalt_200_alpha_100: "#aeb6bf2f",
             asphalt_300: "#85929e",
             asphalt_300_alpha_10: "#85929ea0",
             asphalt_300_alpha_20: "#85929e5f",
@@ -111,7 +123,7 @@ class MyTheme {
     };
     static styles = {
         global: {
-            body: { cursor: "none", m: "0", p: "0" },
+            body: { cursor: "none", m: "0", p: "0", overflow: "hidden" },
         },
     };
     static theme = extendTheme({

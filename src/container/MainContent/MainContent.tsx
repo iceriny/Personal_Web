@@ -6,7 +6,7 @@ interface Props {
 function MainContent({ children }: Props) {
     return (
         <Box
-            m="5%"
+            m="3vh 2vw"
             paddingTop="2%"
             paddingLeft="2%"
             paddingBottom="1%"
@@ -15,6 +15,8 @@ function MainContent({ children }: Props) {
             backdropFilter="auto"
             backdropBlur="10px"
             borderRadius="1.5vw"
+            maxH="80vh"
+            overflow="auto"
         >
             {children}
         </Box>
