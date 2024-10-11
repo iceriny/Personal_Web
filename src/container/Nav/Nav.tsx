@@ -10,13 +10,14 @@ import NavButton from "./NavButton";
 
 interface Props {
     items: [React.ReactNode, () => void][];
+    activatedIndex?: number;
 }
-function Nav({ items }: Props) {
+function Nav({ items, activatedIndex }: Props) {
     // 状态对象定义
     const [status, _setStatus] = useState({
         isHovered: false,
         isDisplayedOverlay: false,
-        activatedIndex: -1,
+        activatedIndex: activatedIndex,
     });
     // 设置状态
     const SetStatus = <K extends keyof typeof status>(
