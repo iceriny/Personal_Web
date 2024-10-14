@@ -1,11 +1,17 @@
+import MyTheme from "../../theme";
 import MotionBox from "../MotionBox/MotionBox";
 import { AnimatePresence } from "framer-motion";
 
 interface Props {
     displayed?: boolean;
     maxBlur?: number;
+    onClick?: () => void;
 }
-function Overlay({ displayed = false, maxBlur = 5 }: Props) {
+function Overlay({
+    displayed = false,
+    maxBlur = 5,
+    onClick = undefined,
+}: Props) {
     return (
         <AnimatePresence>
             {displayed && (
@@ -16,12 +22,12 @@ function Overlay({ displayed = false, maxBlur = 5 }: Props) {
                     left={0}
                     w="100%"
                     h="100%"
-                    bg="none"
+                    bg="brand.asphalt_100_alpha_50"
                     // filter="auto"
                     // blur="2px"
 
                     backdropFilter={`blur(${maxBlur}px) brightness(90%)`}
-                    pointerEvents="none"
+                    pointerEvents={onClick ? "auto" : "none"}
                     animate={{
                         opacity: [0, 1],
                         transitionEnd: {
@@ -29,7 +35,15 @@ function Overlay({ displayed = false, maxBlur = 5 }: Props) {
                         },
                     }}
                     exit={{ opacity: 0 }}
-                />
+                >
+                    <div
+                        onClick={onClick}
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                        }}
+                    ></div>
+                </MotionBox>
             )}
         </AnimatePresence>
     );

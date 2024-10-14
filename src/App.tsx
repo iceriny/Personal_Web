@@ -2,8 +2,8 @@ import MainPage from "./container/MainPage/MainPage";
 import Header from "./container/Header/Header";
 import Nav from "./container/Nav/Nav";
 import MainContent from "./container/MainContent/MainContent";
-import MasonryGallery from "./container/MasonryGallery/MasonryGallery ";
-import { useState } from "react";
+import MasonryGallery from "./container/MasonryGallery/MasonryGallery";
+import { useEffect, useState } from "react";
 
 // import test from "./testScript";
 // import { useEffect } from "react";
@@ -14,6 +14,9 @@ enum Page {
     Render,
     Other,
 }
+// 定义类型
+type ImportMetaGlobEager = Record<string, { default: string }>;
+
 function App() {
     // useEffect(() => {
     //     test();
@@ -27,43 +30,27 @@ function App() {
         ["其他", () => setCurrentPage(Page.Other)],
     ];
 
-    const renderImages = [
-        {
-            src: "src/assets/RenderImg/马赛克卫生间.jpg",
-            alt: "马赛克卫生间",
-        },
-        {
-            src: "src/assets/RenderImg/俯视餐桌.jpg",
-            alt: "马赛克厨房",
-        },
-        {
-            src: "src/assets/RenderImg/水吧台.jpg",
-        },
-        {
-            src: "src/assets/RenderImg/罗马柱床头几.jpg",
-        },
-        {
-            src: "src/assets/RenderImg/木桌子.jpg",
-        },
-        {
-            src: "src/assets/RenderImg/藤编椅.jpg",
-        },
-        {
-            src: "src/assets/RenderImg/椅子.jpg",
-        },
-        {
-            src: "src/assets/RenderImg/鱼缸.jpg",
-        },
-        {
-            src: "src/assets/RenderImg/玄关.jpg",
-        },
-        {
-            src: "src/assets/RenderImg/阳光床头.jpg",
-        },
-    ];
+    const [images, setImages] = useState<string[]>([]);
+
+    const importImages = () => {
+        const imagesModules = import.meta.glob(
+            "./assets/RenderImg/*.{png,jpg,jpeg,svg}",
+            { eager: true }
+        );
+        const result = [];
+        for (const path in imagesModules as ImportMetaGlobEager) {
+            const _ = (imagesModules as ImportMetaGlobEager)[path];
+            result.push(_.default);
+        }
+        return result;
+    };
+
+    useEffect(() => {
+        setImages(importImages);
+    }, []);
 
     const getRenderImgMasonry = () => {
-        return <MasonryGallery img={renderImages} />;
+        return <MasonryGallery images={images} gap={1.5} />;
     };
 
     const getMainContent = () => {
