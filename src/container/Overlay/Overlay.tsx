@@ -1,4 +1,3 @@
-import MyTheme from "../../theme";
 import MotionBox from "../MotionBox/MotionBox";
 import { AnimatePresence } from "framer-motion";
 

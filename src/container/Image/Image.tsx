@@ -1,4 +1,3 @@
-import React from "react";
 import { ImageProps, Image as Img, Skeleton } from "@chakra-ui/react";
 
 function Image(props: ImageProps) {

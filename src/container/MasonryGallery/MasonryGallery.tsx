@@ -1,22 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 import Image from "../Image/Image";
 
 // import { Variants } from "framer-motion";
 import { motion } from "framer-motion";
-import Overlay from "../Overlay/Overlay";
+// import Overlay from "../Overlay/Overlay";
 
 interface Props {
     images: string[];
     p?: number;
     gap?: number;
 }
-enum ImageStatus {
-    Loading,
-    Loaded,
-    Error,
-    current,
-}
+
 function MasonryGallery({ images, p, gap }: Props) {
     // 根据断点调整列数
     const columns = useBreakpointValue({ base: 1, sm: 2, md: 3, lg: 4 });
