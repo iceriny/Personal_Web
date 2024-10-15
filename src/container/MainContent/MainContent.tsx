@@ -15,8 +15,9 @@ function MainContent({ children }: Props) {
             backdropFilter="auto"
             backdropBlur="10px"
             borderRadius="1.5vw"
-            maxH="80vh"
+            h="80vh"
             overflow="auto"
+            boxShadow="0px 0px 50px 10px rgba(0,0,0,0.25)"
         >
             {children}
         </Box>

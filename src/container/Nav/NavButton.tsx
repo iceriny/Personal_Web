@@ -55,14 +55,14 @@ function NavButton({
         hover: {
             fontSize: "1.7rem",
             textShadow: `0px 0px 20px  ${MyTheme.colors.brand.asphalt_600}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_50}`,
-            color: MyTheme.colors.brand.asphalt_100,
+            color: MyTheme.colors.brand.asphalt_50,
         },
         active: {
             fontSize: "2rem",
             textShadow: `0px 0px 10px  ${MyTheme.colors.brand.asphalt_100}, 0px 0px 5px  ${MyTheme.colors.brand.asphalt_100},  0px 0px 15px  Cyan`,
             marginBottom: "3vh",
             marginTop: "3vh",
-            color: MyTheme.colors.brand.asphalt_100,
+            color: MyTheme.colors.brand.asphalt_50,
         },
     };
     const HandleButtonClicked = () => {

@@ -22,7 +22,10 @@ function MasonryGallery({ images, p, gap }: Props) {
             </Flex>
         );
     };
-    const [currentImage, setCurrentImage] = React.useState("");
+    const [
+        currentImage,
+        // setCurrentImage
+    ] = React.useState("");
 
     const imageVariants = {
         initial: { opacity: 0 },
@@ -30,32 +33,30 @@ function MasonryGallery({ images, p, gap }: Props) {
         isCurrentImage: { opacity: 1, size: 1.2 },
     };
     const getImageVariants = (groupIndex: number, imageIndex: number) => {
-        console.log(`${groupIndex}-${imageIndex}`, currentImage);
         if (`${groupIndex}-${imageIndex}` === currentImage)
             return "isCurrentImage";
         else return "visible";
     };
-
     const getImages = (imgs: string[], groupIndex: number = -1) => {
         const imagesNode: React.ReactNode[] = [];
 
         for (let i = 0; i < imgs.length; i++) {
-            const onClick = () => {
-                setCurrentImage(`${groupIndex}-${i}`);
-            };
+            // const onClick = () => {
+            //     setCurrentImage(`${groupIndex}-${i}`);
+            // };
             imagesNode.push(
                 <motion.div
                     key={`MasonryImage_${i}`}
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.05, zIndex: 1 }}
                     transition={{
                         type: "spring",
-                        duration: 3,
+                        duration: 1,
                     }}
                     initial="initial"
                     // animate={getImageVariants()}
                     variants={imageVariants}
                     whileInView={getImageVariants(groupIndex, i)}
-                    onClick={onClick}
+                    // onClick={onClick}
                 >
                     <Image
                         src={imgs[i]}

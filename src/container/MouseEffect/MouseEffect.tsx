@@ -46,11 +46,11 @@ function MouseEffect() {
         }
     };
     const handleMouseDown = () => {
-        console.log("点击了");
+        // console.log("点击了");
         setMouseSize(3);
     };
     const handleMouseUp = () => {
-        console.log("点击抬起");
+        // console.log("点击抬起");
         setMouseSize(1);
     };
 
@@ -77,7 +77,7 @@ function MouseEffect() {
                 height: "8px",
                 transform: `scale(${mouseSize})`,
                 borderRadius: "50%",
-                backgroundColor: MyTheme.colors.brand.asphalt_100,
+                backgroundColor: MyTheme.colors.brand.asphalt_900,
                 pointerEvents: "none",
                 filter: `blur(${blurValue}px)`,
                 zIndex: 1000,

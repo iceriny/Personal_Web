@@ -10,7 +10,7 @@ const Header = ({ children }: Props) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "brand.asphalt_100",
+        color: "brand.asphalt_50",
         textShadow: "0 0 20px black",
         fontWeight: "bold",
         fontSize: "20px",
